@@ -5,8 +5,6 @@ services:
     container_name: overmorrow
     build: .
     ports:
-      - "8096:3000"   # Host port 8096 → Container port 3000
-    environment:
-      - NODE_ENV=production
+      - "8096:3000"
     restart: unless-stopped
 
