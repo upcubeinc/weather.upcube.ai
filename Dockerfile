@@ -1,5 +1,5 @@
 # Stage 1: Build Flutter web app
-FROM cirrusci/flutter:3.22.2 AS build
+FROM ghcr.io/cirruslabs/flutter:3.22.2 AS build
 
 WORKDIR /app
 COPY . .
@@ -19,4 +19,5 @@ COPY --from=build /app/build/web /usr/share/nginx/html
 
 EXPOSE 3000
 CMD ["nginx", "-g", "daemon off;"]
+
 
