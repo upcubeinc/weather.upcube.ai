@@ -24,7 +24,10 @@ COPY . .
 RUN flutter pub get -v
 
 # Build release web bundle (no service worker to simplify proxies)
-RUN flutter build web --release --pwa-strategy=none
+RUN flutter clean \
+ && flutter precache --web \
+ && flutter pub get -v \
+ && flutter build web --release --web-renderer=html --no-tree-shake-icons -v --pwa-strategy=none
 
 # ---- Runtime stage: Nginx to serve the SPA ----
 FROM nginx:stable-alpine
